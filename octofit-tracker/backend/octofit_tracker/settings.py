@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-kmwlp0qupb_%ki46y1)d3=iyu5qm9l$m)i5=*+f(h6pvhly(+v
 DEBUG = True
 
 # Allow all hosts
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'humble-space-yodel-9j965wj74q2jr5-8000.app.github.dev']
 
 
 # Application definition
@@ -83,7 +83,7 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'octofit_db',
         'HOST': 'localhost',
-        'PORT': 27017,
+'PORT': 27017,
     }
 }
 

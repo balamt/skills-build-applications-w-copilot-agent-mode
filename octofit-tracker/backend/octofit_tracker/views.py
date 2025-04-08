@@ -6,18 +6,15 @@ from .models import User, Team, Activity, Leaderboard, Workout
 
 @api_view(['GET'])
 def api_root(request, format=None):
-    # Determine base URL dynamically from the request or use HTTP for Codespace
-    if request.META.get('HTTP_HOST') and 'localhost' in request.META.get('HTTP_HOST'):
-        base_url = 'http://localhost:8000/'
-    else:
-        base_url = 'http://humble-space-yodel-9j965wj74q2jr5-8000.app.github.dev/'
+    # Determine base URL dynamically from the request
+    base_url = request.build_absolute_uri('/')[:-1]
     
     return Response({
-        'users': base_url + 'api/users/',
-        'teams': base_url + 'api/teams/',
-        'activities': base_url + 'api/activities/',
-        'leaderboard': base_url + 'api/leaderboard/',
-        'workouts': base_url + 'api/workouts/',
+        'users': base_url + '/api/users/',
+        'teams': base_url + '/api/teams/',
+        'activities': base_url + '/api/activities/',
+        'leaderboard': base_url + '/api/leaderboard/',
+        'workouts': base_url + '/api/workouts/',
     })
 
 class UserViewSet(viewsets.ModelViewSet):

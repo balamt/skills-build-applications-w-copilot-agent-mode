@@ -14,12 +14,14 @@ class Command(BaseCommand):
         db = client[settings.DATABASES['default']['NAME']]
 
         # Drop existing collections
-        db.users.drop()
-        db.teams.drop()
-        db.activities.drop()
-        db.leaderboard.drop()
-        db.workouts.drop()
-
+        if settings.DEBUG or os.getenv('ENVIRONMENT') != 'production':
+            db.users.drop()
+            db.teams.drop()
+            db.activities.drop()
+            db.leaderboard.drop()
+            db.workouts.drop()
+        else:
+            self.stdout.write(self.style.ERROR('Cannot drop collections in production environment.'))
         # Create users
         users = [
             User(_id=ObjectId(), username='thundergod', email='thundergod@octofit.edu', password='password1'),

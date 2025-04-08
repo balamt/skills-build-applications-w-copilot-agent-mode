@@ -143,3 +143,6 @@ CORS_ALLOW_HEADERS = [
     'authorization',
     'x-csrftoken',
 ]
+
+# Add REST API suffix configuration
+API_SUFFIX = 'api/'
